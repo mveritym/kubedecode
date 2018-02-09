@@ -1,7 +1,7 @@
 install:
-	rm -rf /usr/local/Cellar/kubedecode
-	mkdir -p /usr/local/Cellar/kubedecode/1.0
+	rm -rf $(PREFIX)
+	mkdir -p $(PREFIX)
 
-	cp bin/kubedecode /usr/local/Cellar/kubedecode/1.0/
-	chmod 0555 /usr/local/Cellar/kubedecode/1.0/kubedecode
-	ls /usr/local/Cellar/kubedecode/1.0
+	cp bin/kubedecode $(PREFIX)
+	chmod 0555 $(PREFIX)/kubedecode
+	ls $(PREFIX)
