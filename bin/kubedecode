@@ -1,5 +1,22 @@
 #!/bin/bash
 
+function usage(){
+  echo -e "usage:      ${0} SECRET [NAMESPACE]\n"
+  echo -e "SECRET      The secret to decode"
+  echo -e "NAMESPACE   The namespace to retrieve the secret from (optional,"
+  echo -e "            defaults to the namespace of the current context)."
+}
+
+if [ "${1}" == "-h" ]; then
+  usage
+  exit
+fi
+
+if [[ -z "${1// }" ]]; then
+  echo "ERROR: No secret set."
+  usage
+  exit 1
+fi
 SECRET="$1"
 
 if [[ -z "${2// }" ]]; then
