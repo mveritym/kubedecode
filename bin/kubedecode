@@ -3,8 +3,8 @@
 SECRET="$1"
 NAMESPACE="$2"
 
-for row in $(echo $(kubectl get secret $SECRET -o json -n $NAMESPACE) | jq -c '.data | to_entries[]'); do
-  KEY=$(echo $row | jq -r '.key')
-  DECODED=$(echo $row | jq -r '.value' | base64 --decode)
-  echo $KEY: $DECODED
+for row in $(kubectl get secret "${SECRET}" -o json -n "${NAMESPACE}" | jq -c '.data | to_entries[]'); do
+  KEY=$(echo "${row}" | jq -r '.key')
+  DECODED=$(echo "${row}" | jq -r '.value' | base64 --decode)
+  echo "${KEY}: ${DECODED}"
 done
