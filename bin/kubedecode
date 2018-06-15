@@ -4,7 +4,7 @@ function usage(){
   echo -e "usage:      ${0} SECRET [NAMESPACE]\n"
   echo -e "SECRET      The secret to decode"
   echo -e "NAMESPACE   The namespace to retrieve the secret from (optional,"
-  echo -e "            defaults to the namespace of the current context)."
+  echo -e "            defaults to the namespace of the current context or KUBENS)."
 }
 
 if [ "${1}" == "-h" ]; then
@@ -21,6 +21,7 @@ SECRET="$1"
 
 if [[ -z "${2// }" ]]; then
   NAMESPACE=$(kubectl config get-contexts --no-headers | tr -s ' ' | cut -d ' ' -f5)
+  [ ! -z $NAMESPACE ] || NAMESPACE=$KUBENS
   echo "No namespace set, using default: ${NAMESPACE}"
 else
   NAMESPACE="$2"
