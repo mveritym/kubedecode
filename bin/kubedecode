@@ -20,7 +20,7 @@ fi
 SECRET="$1"
 
 if [[ -z "${2// }" ]]; then
-  NAMESPACE=$(kubectl config get-contexts --no-headers | tr -s ' ' | cut -d ' ' -f5)
+  NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}')
   [ ! -z "$NAMESPACE" ] || NAMESPACE=$KUBENS
   echo "No namespace set, using default: ${NAMESPACE}"
 else
