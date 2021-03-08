@@ -21,7 +21,7 @@ SECRET="$1"
 
 if [[ -z "${2// }" ]]; then
   NAMESPACE=$(kubectl config get-contexts --no-headers | tr -s ' ' | cut -d ' ' -f5)
-  [ ! -z $NAMESPACE ] || NAMESPACE=$KUBENS
+  [ ! -z "$NAMESPACE" ] || NAMESPACE=$KUBENS
   echo "No namespace set, using default: ${NAMESPACE}"
 else
   NAMESPACE="$2"
